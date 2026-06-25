@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Untuk Kamu ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Antique&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
+
+<link href="https://maukahkamu.likeadream.repl.co/style.css" rel="stylesheet">
+
+<style>
+
+body{
+background-image:url("https://i.postimg.cc/1XThnLPn/IMG-20211212-151241-598.jpg");
+background-repeat:no-repeat;
+background-size:cover;
+font-family:'Shippori Antique',sans-serif;
+overflow:hidden;
+}
+
+.fa-heart{
+position:fixed;
+top:-10px;
+color:red;
+z-index:999;
+animation:jatuh linear forwards;
+}
+
+@keyframes jatuh{
+to{
+transform:translateY(110vh);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="bodyblur"></div>
+
+<div id="konten">
+
+<div id="fotoloveu">
+
+<div class="image">
+<img src="https://i.postimg.cc/7hQjgNSM/wing.gif"
+width="100"
+height="100">
+</div>
+
+<span id="hasiljawab"></span>
+
+</div>
+
+<div id="tombWA">
+
+<a class="button whatsapp" onclick="bukaWa()">
+Kirim ❤️
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+// ================= AUDIO =================
+
+let audio;
+
+function play(){
+
+audio = new Audio("./audiolaguku.mp3");
+
+audio.loop=true;
+
+audio.play().catch(err=>{
+console.log("Audio gagal:",err);
+});
+
+}
+
+// ================= TANGGAL =================
+
+let today=new Date();
+
+let dateTime=
+today.getDate()+"/"+
+(today.getMonth()+1)+"/"+
+today.getFullYear();
+
+// ================= SWEET ALERT =================
+
+const swals=Swal.mixin({
+allowOutsideClick:false
+});
+
+// ================= WHATSAPP =================
+
+function bukaWa(){
+
+let pesan=
+window.nama+
+" udah liat semuanya ><" +
+
+"\n\n"+
+
+window.nama+
+" "+window.prtnya+
+
+"\n\n=> "+
+
+window.tnya+
+
+"\n\nTanggal: "+
+
+dateTime;
+
+window.location.href=
+"https://wa.me/6285198230071?text="+
+encodeURIComponent(pesan);
+
+}
+
+// ================= MULAI =================
+
+async function mulai(){
+
+var {value:nama}=await swals.fire({
+
+title:'Nama kamu?',
+input:'text',
+confirmButtonText:'Lanjut'
+
+});
+
+if(nama && nama.length<11){
+
+window.nama=nama;
+
+play();
+
+await swals.fire("haiii "+nama+" ❤️");
+await swals.fire("aku mau ngomong sesuatu nihhh");
+await swals.fire("satu bulan itu waktu yang cepat yaa 🙂");
+await swals.fire("tapi jangan marah yaaa");
+await swals.fire("jangan nagiss");
+await swals.fire("Jadi intinya...");
+await swals.fire("aku suka sama kamuu 🙂");
+await swals.fire("aku cintaaaa banget sama kamuu");
+await swals.fire("sayangg bangett");
+await swals.fire("yaa daripada status kita ga jelass kann??");
+
+window.prtnya="mau gak jadi pacar aku?";
+
+var {value:tnya}=await swals.fire({
+
+title:nama+" "+window.prtnya,
+input:'text',
+confirmButtonText:'Konfirmasi'
+
+});
+
+if(tnya && tnya.length<11){
+
+window.tnya=tnya;
+
+document.getElementById(
+"hasiljawab"
+).innerHTML=
+
+"Jawaban dari <b>"+
+nama+
+"</b>: <b>"+
+tnya+
+"</b>";
+
+await swals.fire(
+"sekarang klik tombol Kirim ❤️"
+);
+
+for(let i=0;i<80;i++){
+
+setTimeout(
+createHeart,
+i*150
+);
+
+}
+
+}else{
+
+await swals.fire(
+"Ups!",
+"Jawaban kosong atau terlalu panjang"
+);
+
+mulai();
+
+}
+
+}else{
+
+await swals.fire(
+"Ups!",
+"Nama kosong atau terlalu panjang"
+);
+
+mulai();
+
+}
+
+}
+
+mulai();
+
+// ================= LOVE ANIMATION =================
+
+function createHeart(){
+
+const heart=
+document.createElement("div");
+
+heart.className=
+"fas fa-heart";
+
+heart.style.left=
+(Math.random()*100)+"vw";
+
+heart.style.animationDuration=
+(Math.random()*3+2)+"s";
+
+document.body.appendChild(
+heart
+);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},5000);
+
+}
+
+</script>
+
+</body>
+</html>
+```
